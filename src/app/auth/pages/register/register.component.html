@@ -1,0 +1,77 @@
+<mat-card-title style="text-align: center; padding:2rem">Register</mat-card-title>
+<mat-card-content >
+    <form class="form-container" 
+        fxLayout="column"
+        [formGroup]="form"
+        (ngSubmit)="register()">
+        <mat-form-field >
+            <mat-label>First Name </mat-label>
+            <input 
+                type="email"
+                matInput
+                type="text"
+                formControlName="first_name"
+                required
+            />
+        </mat-form-field>
+        
+        <mat-form-field >
+            <mat-label>Last Name </mat-label>
+            <input 
+                matInput
+                type="text"
+                formControlName="last_name"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Vat</mat-label>
+            <input 
+                matInput
+                formControlName="vat"
+                type="text"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Email </mat-label>
+            <input 
+                type="email"
+                matInput
+                formControlName="email"
+                type="text"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Password </mat-label>
+            <input 
+                type="password"
+                matInput
+                formControlName="password"
+                required
+            />
+        </mat-form-field>
+
+        <button mat-raised-button 
+                style="width: 100%;"
+                color="primary"
+                [disabled]="form.invalid"
+                type="submit"
+                >
+            <mat-icon>how_to_reg</mat-icon>
+            Sign up
+        </button>
+
+        <div style="margin-top: 20px; display: flex; flex-direction: column ;align-items: center;">
+            <span style="margin-bottom: 10px;">Have you already had a account?</span>
+            <a routerLink="/auth" style="color: white; text-decoration: none;">
+                Sign in here!
+            </a>
+        </div>
+        
+    </form>
+</mat-card-content>

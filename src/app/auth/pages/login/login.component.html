@@ -1,0 +1,43 @@
+<mat-card-title style="text-align: center; padding:2rem">Login</mat-card-title>
+<mat-card-content >
+    <form (ngSubmit)="login()" class="form-container" fxLayout="column" [formGroup]="form">
+        <mat-form-field >
+            <mat-label>Email </mat-label>
+            <input 
+                type="email"
+                matInput
+                formControlName="email"
+                type="text"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Password </mat-label>
+            <input 
+                type="password"
+                formControlName="password"
+                matInput
+                required
+            />
+        </mat-form-field>
+
+        <button mat-raised-button 
+                style="width: 100%;"
+                color="primary"
+                type="submit"
+                [disabled]="form.invalid"
+                >
+            <mat-icon>login</mat-icon>
+            Sign in
+        </button>
+
+        <div style="margin-top: 20px; display: flex; flex-direction: column ;align-items: center;">
+            <span style="margin-bottom: 10px;">Don't you have account?</span>
+            <a routerLink="/auth/register" style="color: white; text-decoration: none;">
+                Sign Up
+            </a>
+        </div>
+        
+    </form>
+</mat-card-content>
