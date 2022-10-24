@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../auth/services/auth.service';
+import { User } from 'src/app/interfaces/user.interface';
+import { UserService } from '../../services/user.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-user-list',
@@ -8,13 +12,25 @@ import { AuthService } from '../../../../auth/services/auth.service';
 })
 export class UserListComponent implements OnInit {
 
-  get user() {
-    return this.authService.user;
+
+  displayedColumns: string[] = [
+    'id',
+    'first_name',
+    'last_name',
+    'email',
+  ];
+  dataSource!: MatTableDataSource<User>;
+
+  constructor(private userService: UserService) { 
+    this.userService.getUsers().subscribe({
+      next: resp => {
+        this.dataSource = new MatTableDataSource(resp.users);
+      }
+    })
   }
 
-  constructor(private authService: AuthService) { }
-
   ngOnInit(): void {
+    
   }
 
 }

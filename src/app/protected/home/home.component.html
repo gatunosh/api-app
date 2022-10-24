@@ -1,1 +1,48 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen>
+
+    <mat-sidenav #sidenav mode="push">
+
+        <mat-toolbar color="primary" class="spacer">
+            <span>Menu</span>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        
+        <mat-nav-list>
+            <a routerLink="/dashboard/users"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Users</span>
+            </a>
+            <a routerLink="/dashboard/users"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>search</mat-icon>
+                <span>Search User</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar class="spacer">
+        <button mat-icon-button
+                (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+            <span style="padding-right: 10px;">Welcome {{ user.first_name }}!</span>
+            <button mat-raised-button color="primary"
+                    (click)="logout()">
+                Log out
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>
