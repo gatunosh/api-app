@@ -4,3 +4,8 @@ export interface GetUser {
     total: number,
     users?: User[]
 }
+
+export interface ModifyUser {
+    msg?: string,
+    user?: User;
+}
