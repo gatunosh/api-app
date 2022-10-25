@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, of } from 'rxjs';
 import { GetUser, ModifyUser } from '../interfaces/getUsers.interface';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,13 @@ export class UserService {
 
   }
 
+  getUser(id: string) {
+
+    const url = `${this.baseUrl}/user/${id}`;
+
+    return this.http.get<User>(url);
+  }
+
   deleteUser(id: string) {
 
     const url = `${this.baseUrl}/user/${id}`;
@@ -34,12 +42,28 @@ export class UserService {
                 return false;
               }),
               catchError(err => {
-                console.log('ERROR');
-                console.log(err);
                 return of(err.error)
               })
             );
   
+  }
+
+  updateUser(id: string, user: User) {
+    const url = `${this.baseUrl}/user/${id}`;
+    const body = { ...user };
+
+    return this.http.put<ModifyUser>(url , body)
+            .pipe(
+              map(resp => {
+                if (resp.user) {
+                  return true;
+                }
+                return false;
+              }),
+              catchError(err => {
+                return of(err.error)
+              })
+            );
   }
 
 }

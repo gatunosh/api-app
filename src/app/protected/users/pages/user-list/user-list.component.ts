@@ -5,6 +5,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,8 @@ export class UserListComponent implements OnInit {
   ];
   dataSource!: MatTableDataSource<User>;
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService,
+              private router: Router) { 
     this.userService.getUsers().subscribe({
       next: resp => {
         this.dataSource = new MatTableDataSource(resp.users);
@@ -35,7 +37,7 @@ export class UserListComponent implements OnInit {
   }
 
   updateUser(id:string) {
-    console.log(id);
+    this.router.navigateByUrl(`/dashboard/users/edit/${id}`);
   }
 
   deleteUser(id:string) {

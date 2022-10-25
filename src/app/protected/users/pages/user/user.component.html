@@ -1,0 +1,69 @@
+
+<div fxLayout="row" fxLayout.xs="column" fxLayout="40px" fxLayoutGap="40px">
+    <form fxFlex="50" fxLayout="column" 
+        [formGroup]="form"
+        (ngSubmit)="save()">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
+            
+            <mat-form-field >
+                <mat-label>First Name </mat-label>
+                <input 
+                    type="email"
+                    matInput
+                    type="text"
+                    formControlName="first_name"
+                    required
+                />
+            </mat-form-field>
+            
+            <mat-form-field >
+                <mat-label>Last Name </mat-label>
+                <input 
+                    matInput
+                    type="text"
+                    formControlName="last_name"
+                    required
+                />
+            </mat-form-field>
+        </div>
+        
+        <mat-form-field >
+            <mat-label>Vat</mat-label>
+            <input 
+                matInput
+                formControlName="vat"
+                type="text"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Email </mat-label>
+            <input 
+                type="email"
+                matInput
+                formControlName="email"
+                type="text"
+                required
+            />
+        </mat-form-field>
+
+
+        <div fxLayout class="spacer">
+            <button mat-raised-button color="primary"
+                (click)="save()"
+                type="submit">
+                <mat-icon>edit</mat-icon>
+                Save
+            </button>
+            <button mat-raised-button color="warn"
+                type="button"
+                routerLink="/dashboard/users">
+                <mat-icon>cancel</mat-icon>
+                Cancel
+            </button>
+        </div>
+
+    </form>
+
+</div>
